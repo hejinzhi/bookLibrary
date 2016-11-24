@@ -17,12 +17,11 @@ Page({
     this.data.isbn13=util.getISBN13();
 
     wx.navigateTo({
-      url: "../detail/detail?id=" + that.data.isbn13+"&addBook='Y'"
+      url: "../detail/detail?id=" + that.data.isbn13+"&addBook=Y"
     });
   },
   //根据扫码录入控制手动输入的form是否显示
   screenInput:function(e){
-    console.log(e.detail.value);
     this.setData({
       isShowInputForm:!e.detail.value
     })

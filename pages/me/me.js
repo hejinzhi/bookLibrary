@@ -9,7 +9,7 @@ Page({
       {
         text:'借入的图书',
         icon:'../../assets/img/iconfont-dingdan.png',
-        url:''
+        url:'../bookList/bookList'
       },
             {
         text:'借出的图书',

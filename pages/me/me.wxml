@@ -8,7 +8,7 @@
 <view class="space-line"></view>
 
 <view class="weui-cells weui-cells_after-title">
-    <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{meList}}">
+    <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{meList}}" wx:key="text">
         <view class="weui-cell__hd">
             <image src="{{item.icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </view>

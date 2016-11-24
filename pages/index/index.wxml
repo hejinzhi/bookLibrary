@@ -1,3 +1,4 @@
+
 <!--<view class="weui-search-bar">
     <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
@@ -14,30 +15,29 @@
     </view>
     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
 </view>-->
-
 <view class="content" scroll-y="true">
-    <view class="search-bar">
-   <input   placeholder="请输入书名" bindchange="inputChange"/>
-   <button type="primary" bindtap="queryBooks">查詢</button>
+  <view class="search-bar">
+    <input placeholder="请输入书名" bindchange="inputChange" />
+    <button type="primary" bindtap="queryBooks">查詢</button>
   </view>
-    <view class="header-bg"></view>
-    <view class="book-content">
-        <view wx:for="{{bookList}}" wx:key="ISBN13" id="{{item.ISBN13}}" data-qty="{{item.QTY}}" bindtap="goToDetailPage">
-            <view class="book-list">
-                <view class="book-image">
-                    <image src="{{item.IMAGE}}" mode="aspectFit"></image>
-                </view>
-                <view class="book-info">
-                    <view class="book-info-style">
-                        <view>书名:{{item.TITLE}}</view>
-                        <view>作者:{{item.AUTHOR}}\n</view>
-                        <view>价格:{{item.PRICE}}\n</view>
-                        <view>出版信息:{{item.PUBLISHER}}\n</view>
-                        <view>可借数量:{{item.QTY}}\n</view>
-                    </view>
-                </view>
-            </view>
-            <view class="line"></view>
+  <view class="header-bg"></view>
+  <view class="book-content">
+    <view wx:for="{{bookList}}" wx:key="ISBN13" id="{{item.isbn13}}" data-qty="{{item.qty}}" bindtap="goToDetailPage">
+      <view class="book-list">
+        <view class="book-image">
+          <image src="{{item.image}}" mode="aspectFit"></image>
         </view>
+        <view class="book-info">
+          <view class="book-info-style">
+            <view>书名:{{item.title}}</view>
+            <view>作者:{{item.author}}\n</view>
+            <view>价格:{{item.price}}\n</view>
+            <view>出版信息:{{item.publisher}}\n</view>
+            <view>可借数量:{{item.qty}}\n</view>
+          </view>
+        </view>
+      </view>
+      <view class="line"></view>
     </view>
+  </view>
 </view>

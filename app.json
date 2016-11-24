@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/detail/detail",
     "pages/addBook/addBook",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/bookList/bookList"
   ],
   "tabBar": {
     "list": [{
@@ -28,6 +29,7 @@
     "backgroundTextStyle":"black",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "图书管理系统",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":false
   }
 }
