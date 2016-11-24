@@ -187,7 +187,8 @@ Page({
   onShow: function () {
     // 页面显示
     //console.log('onshow');
-    this.queryAllBooks();
+    //this.queryAllBooks();
+    this.queryBooks();
   },
   queryAllBooks: function () {
 

@@ -17,7 +17,8 @@
 </view>-->
 <view class="content" scroll-y="true">
   <view class="search-bar">
-    <input placeholder="请输入书名" bindchange="inputChange" />
+    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+    <input placeholder="请输入书名" bindchange="inputChange"/>
     <button type="primary" bindtap="queryBooks">查詢</button>
   </view>
   <view class="header-bg"></view>

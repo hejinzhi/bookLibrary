@@ -113,20 +113,21 @@
   top: 300rpx;
 }
 
-.add-book-qty{
-  flex: 0 0 50%;
-  border: 1px solid orange;
-  padding-left: 20rpx;
-}
+
 
 .add-book-container{
-  display: flex;
-  flex-direction: row;
-
-  align-items: center;
+  display: block;
 }
 
 .add-book-container label{
-  flex: 0 0 10%;
-  height: 100%;
+  float: left;
+  height: 55rpx;
+  line-height: 55rpx;
+}
+
+.add-book-qty{
+  border: 1px solid orange;
+  padding-left: 20rpx;
+  width: 40%;
+  float: left;
 }
