@@ -28,19 +28,26 @@ function selectBooks(params, cb) {
 
 }
 
-function selectBookFromDouban(isbn13, cb) {
-    var option = {
-        method: 'GET',
-        url: config.doubanUrl + isbn13
-    };
+function selectBookFromDouban(isbn13) {
+    // var option = {
+    //     method: 'GET',
+    //     url: config.doubanUrl + isbn13
+    // };
 
-    util.request(option, (res, err) => {
-        if (err) {
-            cb(err);
-        } else {
-            cb(res);
-        }
+    // util.request(option, (res, err) => {
+    //     if (err) {
+    //         cb(err);
+    //     } else {
+    //         cb(res);
+    //     }
+    // });
+    return new Promise((resolve, reject) => {
+
+        util.get(config.doubanUrl + isbn13).then((res) => {
+            resolve(res);
+        });
     });
+
 
     // return new Promise(function (resolve, reject) {
     //     util.request(option).then(function (res, err) {

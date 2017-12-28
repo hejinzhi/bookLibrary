@@ -152,27 +152,34 @@ Page({
   queryBooks: function (e) {
     var that = this;
 
-    var inputMsg = that.data.inputValue;
-    var options = {
-      url: config.clubApi.list,
-      data: {
-        appkey: config.appKey,
-        type: 'bookLibrary',
-        // columns:'title',
-        keywords: inputMsg
-        //columns: ['id', 'isbn13', 'title']
-      }
-    };
+    // var inputMsg = that.data.inputValue;
+    // var options = {
+    //   url: config.clubApi.list,
+    //   data: {
+    //     appkey: config.appKey,
+    //     type: 'bookLibrary',
+    //     // columns:'title',
+    //     keywords: inputMsg
+    //     //columns: ['id', 'isbn13', 'title']
+    //   }
+    // };
 
-    util.request(options, (res, err) => {
-      var books = [];
-      for (var i = 0; i < res.data.result.length; i++) {
-        books.push(res.data.result[i].value);
-      }
+    // util.request(options, (res, err) => {
+    //   var books = [];
+    //   for (var i = 0; i < res.data.result.length; i++) {
+    //     books.push(res.data.result[i].value);
+    //   }
+    //   that.setData({
+    //     bookList: books
+    //   });
+    // });
+
+    util.get('https://www.skyactiv.xin/api/book').then((res) => {
+      console.log(res);
       that.setData({
-        bookList: books
+        bookList: res.data.result
       });
-    });
+    })
 
   },
   goToDetailPage: function (e) {
@@ -204,7 +211,7 @@ Page({
     util.request(options, function (res) {
       var books = [];
       for (var i = 0; i < res.data.result.length; i++) {
-         books.push(res.data.result[i].value);
+        books.push(res.data.result[i].value);
         //books.push(JSON.parse(res.data.result[i].value));
         //console.log(typeof(res.data.result[i].value));
       }
@@ -212,7 +219,7 @@ Page({
         bookList: books
       })
     });
-    
+
 
 
   }

@@ -5,7 +5,7 @@ var config = require('../../utils/config');
 var db = require('../../utils/db');
 var isbn13;
 var qty;
-var empno = 'FE717';//暂时hard code，应该是从登陆用户找到对应的工号
+var empno = 'FE717'; //暂时hard code，应该是从登陆用户找到对应的工号
 
 Page({
   data: {
@@ -50,49 +50,56 @@ Page({
       isLoading: false
     });
 
-    db.selectBookFromDouban(isbn13, (res, err) => {
-      var book = res.data;
+    // db.selectBookFromDouban(isbn13).then((res) => {
+    //   console.log(res);
+    // })
+    util.get('https://www.skyactiv.xin/api/book/douban/9787111440857').then((res) => {
+      console.log(res);
+    })
 
-      if (options.qty) {
-        book["qty"] = options.qty;
-        qty = options.qty;
-      }
+    // db.selectBookFromDouban(isbn13, (res, err) => {
+    //   var book = res.data;
 
-      if (options.addBook) {
-        book["qty"] = 1;
-        that.setData({
-          showAddBook: true
-        });
-      }
+    //   if (options.qty) {
+    //     book["qty"] = options.qty;
+    //     qty = options.qty;
+    //   }
 
-      //qty>0 代表从主页面点击图书，且图书可借数量大于0，显示借阅按钮
-      if (options.qty > 0) {
-        that.setData({
-          bookMsg: book,
-          isLoading: true,
-          showBorrowBtn: true,
-          showBookBtn: false
-        });
-      }
-      //qty=0 代表从主页面点击图书，且图书可借数量等于0，显示预约按钮
-      else if (options.qty == 0) {
-        that.setData({
-          bookMsg: book,
-          isLoading: true,
-          showBorrowBtn: false,
-          showBookBtn: true
-        });
-      }
-      //qty=undifine 代表从录入页面转跳过来，显示 录入按钮
-      else {
-        that.setData({
-          bookMsg: book,
-          isLoading: true,
-          showBorrowBtn: false,
-          showBookBtn: false
-        });
-      }
-    });
+    //   if (options.addBook) {
+    //     book["qty"] = 1;
+    //     that.setData({
+    //       showAddBook: true
+    //     });
+    //   }
+
+    //   //qty>0 代表从主页面点击图书，且图书可借数量大于0，显示借阅按钮
+    //   if (options.qty > 0) {
+    //     that.setData({
+    //       bookMsg: book,
+    //       isLoading: true,
+    //       showBorrowBtn: true,
+    //       showBookBtn: false
+    //     });
+    //   }
+    //   //qty=0 代表从主页面点击图书，且图书可借数量等于0，显示预约按钮
+    //   else if (options.qty == 0) {
+    //     that.setData({
+    //       bookMsg: book,
+    //       isLoading: true,
+    //       showBorrowBtn: false,
+    //       showBookBtn: true
+    //     });
+    //   }
+    //   //qty=undifine 代表从录入页面转跳过来，显示 录入按钮
+    //   else {
+    //     that.setData({
+    //       bookMsg: book,
+    //       isLoading: true,
+    //       showBorrowBtn: false,
+    //       showBookBtn: false
+    //     });
+    //   }
+    // });
 
 
 
@@ -171,9 +178,9 @@ Page({
       } else {
         borrowList = [];
       }
-      var book={
-        isbn13:isbn13,
-        borrowDate:new Date().getTime()
+      var book = {
+        isbn13: isbn13,
+        borrowDate: new Date().getTime()
       }
       borrowList.push(book);
 
@@ -196,7 +203,7 @@ Page({
             url: config.clubApi.put,
             method: 'POST',
             header: {
-              'content-type': 'application/x-www-form-urlencoded'//'application/json'
+              'content-type': 'application/x-www-form-urlencoded' //'application/json'
             },
             data: {
               appkey: config.appKey,
@@ -243,20 +250,20 @@ Page({
     //var nowTimestamp = new Date().getTime();
     util.request(option1, res => {
       if (typeof (res.data.result) !== 'undefined') {
-        this.data.bookMsg.qty +=parseInt(this.data.addBookQty) - 0 ;
+        this.data.bookMsg.qty += parseInt(this.data.addBookQty) - 0;
         //this.data.bookMsg.borrowDate =nowTimestamp;
         var options = {
           url: config.clubApi.put,
           method: 'POST',
           header: {
-            'content-type': 'application/x-www-form-urlencoded'//'application/json'
+            'content-type': 'application/x-www-form-urlencoded' //'application/json'
           },
           data: {
             appkey: config.appKey,
             type: 'bookLibrary',
             key: isbn13,
             value: JSON.stringify(this.data.bookMsg)
-            // columns: ['id', 'isbn13', 'title']
+              // columns: ['id', 'isbn13', 'title']
           }
         };
 
@@ -275,7 +282,7 @@ Page({
           url: config.clubApi.put,
           method: 'POST',
           header: {
-            'content-type': 'application/x-www-form-urlencoded'//'application/json'
+            'content-type': 'application/x-www-form-urlencoded' //'application/json'
           },
           data: {
             appkey: config.appKey,

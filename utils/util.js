@@ -1,4 +1,3 @@
-
 //参数是时间戳
 function formatTime(ms) {
   // 86400000
@@ -20,7 +19,9 @@ function request(option, cb) {
     url: option.url,
     data: option.data ? option.data : {},
     method: option.method ? option.method : 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    header: option.header ? option.header : { 'content-type': 'application/json' }, // 设置请求的 header
+    header: option.header ? option.header : {
+      'content-type': 'application/json'
+    }, // 设置请求的 header
     success: function (res) {
       cb(res);
     },
@@ -29,6 +30,24 @@ function request(option, cb) {
     }
   });
 
+}
+
+function get(url) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: url,
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: (res) => {
+        resolve(res);
+      },
+      fail: (err) => {
+        reject(err);
+      }
+    });
+  });
 }
 
 function showLoading() {
@@ -97,7 +116,8 @@ function getObjectValues(obj) {
 
 function getISBN13() {
   var ISBN13 = ['9787115362865', '9787302315582', '9787121260742', '9787302367598',
-    '9787111499756', '9787121269370', '9787302386414', '9787115340498', '9787121253799'];
+    '9787111499756', '9787121269370', '9787302386414', '9787115340498', '9787121253799'
+  ];
   var index = parseInt(Math.random() * 10);
   return ISBN13[index];
 
@@ -110,6 +130,7 @@ function getISBN13() {
 module.exports = {
   formatTime: formatTime,
   request: request,
+  get: get,
   showLoading: showLoading,
   hideLoading: hideLoading,
   genBookData: genBookData,
