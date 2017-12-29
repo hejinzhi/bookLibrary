@@ -1,8 +1,8 @@
 var app = getApp();
 var url = app.url;
-var util = require('../../utils/util');
-var config = require('../../utils/config');
-var db = require('../../utils/db');
+// var util = require('../../utils/util');
+// var config = require('../../utils/config');
+
 var isbn13;
 var qty;
 var empno = 'FE717'; //暂时hard code，应该是从登陆用户找到对应的工号

@@ -1,8 +1,8 @@
-var config = require('../../utils/config');
-var url = config.url;
-var util = require('../../utils/util');
-var db = require('../../utils/db');
-var empno = 'FE717';//暂时hard code，应该是从登陆用户找到对应的工号
+// var config = require('../../utils/config');
+// var url = config.url;
+// var util = require('../../utils/util');
+// var db = require('../../utils/db');
+var empno = 'FE717'; //暂时hard code，应该是从登陆用户找到对应的工号
 
 Page({
   data: {
@@ -59,7 +59,7 @@ Page({
             //console.log(newDate.toLocaleString());
             //book["borrowDate"] = newDate.toLocaleDateString();
             book["borrowDate"] = util.formatTime(results[i].borrowDate);
-            book["shouldBackDate"] = util.formatTime(results[i].borrowDate+86400000*30);
+            book["shouldBackDate"] = util.formatTime(results[i].borrowDate + 86400000 * 30);
             books.push(book);
             that.setData({
               bookList: books

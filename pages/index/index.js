@@ -1,18 +1,48 @@
-//index.js
-//获取应用实例
 var app = getApp();
-var config = require('../../utils/config');
-var url = config.url;
-var util = require('../../utils/util');
-var db = require('../../utils/db');
+
+import bookService from '../../service/book.service';
+// import Rx from 'rxjs';
 
 Page({
   data: {
     bookList: [],
-    inputValue: ''
+    inputShowed: false,
+    inputVal: ""
   },
   inputChange: function (e) {
-    this.data.inputValue = e.detail.value;
+    this.data.inputVal = e.detail.value;
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    // Rx.Observable.of(e.detail.value).debounceTime(300).distinctUntilChanged().subscribe((data) => {
+    //   console.log(data);
+    // })
+
+    // this.setData({
+    //   inputVal: e.detail.value
+    // });
+    // let that = this;
+    // console.log(e.detail.value)
+    // bookService.getBookById(12).then((res) => {
+    //   that.setData({
+    //     bookList: [res.data.result]
+    //   });
+    // });
   },
   //事件处理函数
   bindViewTap: function () {
@@ -151,35 +181,11 @@ Page({
   },
   queryBooks: function (e) {
     var that = this;
-
-    // var inputMsg = that.data.inputValue;
-    // var options = {
-    //   url: config.clubApi.list,
-    //   data: {
-    //     appkey: config.appKey,
-    //     type: 'bookLibrary',
-    //     // columns:'title',
-    //     keywords: inputMsg
-    //     //columns: ['id', 'isbn13', 'title']
-    //   }
-    // };
-
-    // util.request(options, (res, err) => {
-    //   var books = [];
-    //   for (var i = 0; i < res.data.result.length; i++) {
-    //     books.push(res.data.result[i].value);
-    //   }
-    //   that.setData({
-    //     bookList: books
-    //   });
-    // });
-
-    util.get('https://www.skyactiv.xin/api/book').then((res) => {
-      console.log(res);
+    bookService.getAllBooks().then((res) => {
       that.setData({
         bookList: res.data.result
       });
-    })
+    });
 
   },
   goToDetailPage: function (e) {
@@ -208,17 +214,17 @@ Page({
       }
     };
 
-    util.request(options, function (res) {
-      var books = [];
-      for (var i = 0; i < res.data.result.length; i++) {
-        books.push(res.data.result[i].value);
-        //books.push(JSON.parse(res.data.result[i].value));
-        //console.log(typeof(res.data.result[i].value));
-      }
-      that.setData({
-        bookList: books
-      })
-    });
+    // util.request(options, function (res) {
+    //   var books = [];
+    //   for (var i = 0; i < res.data.result.length; i++) {
+    //     books.push(res.data.result[i].value);
+    //     //books.push(JSON.parse(res.data.result[i].value));
+    //     //console.log(typeof(res.data.result[i].value));
+    //   }
+    //   that.setData({
+    //     bookList: books
+    //   })
+    // });
 
 
 
